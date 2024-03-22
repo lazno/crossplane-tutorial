@@ -1,3 +1,10 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: aws-config
+spec:
+  args: 
+    - --poll=1m
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -5,3 +12,5 @@ metadata:
   name: provider-aws-ec2
 spec:
   package: xpkg.upbound.io/upbound/provider-aws-ec2:v1.0.0
+  controllerConfigRef:
+    name: aws-config
